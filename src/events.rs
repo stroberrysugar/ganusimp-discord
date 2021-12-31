@@ -55,7 +55,7 @@ async fn report<F>(
 {
     println!("{:?}", member_details);
 
-    while let Some(n) = config.members.iter().next() {
+    for n in config.members.iter() {
         if member_details.username.eq(&n.username) {
             let discord0 = discord.clone();
 

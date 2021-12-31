@@ -18,6 +18,7 @@ async fn main() {
             .app_data(config.clone())
             .app_data(discord.clone())
             .service(events::on_death)
+            .service(events::on_join)
     })
     .bind("127.0.0.1:42069")
     .unwrap()

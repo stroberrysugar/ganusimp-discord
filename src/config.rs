@@ -25,7 +25,7 @@ pub struct Config {
 #[derive(Clone, Deserialize, Serialize)]
 pub struct Member {
     pub discord: UserId,
-    pub identifier: MemberIdentifier,
+    pub username: String,
 }
 
 #[derive(Clone, Deserialize, Serialize)]
@@ -46,10 +46,8 @@ impl Default for Config {
             guild_id: GuildId(883354392093409280),
             token: "".to_string(),
             members: vec![Member {
-                identifier: MemberIdentifier::Premium {
-                    uuid: "".to_string(),
-                },
                 discord: UserId(0),
+                username: "".to_string(),
             }],
         }
     }

@@ -3,12 +3,11 @@ use futures::TryFutureExt;
 use serde::Deserialize;
 use serenity::{builder::CreateEmbed, CacheAndHttp};
 
-use crate::config::{Config, MemberIdentifier};
+use crate::config::Config;
 
 #[derive(Debug, Deserialize)]
 struct MemberDetails {
     username: String,
-    uuid: String,
     position: String,
 }
 
@@ -57,10 +56,7 @@ async fn report<F>(
     println!("{:?}", member_details);
 
     while let Some(n) = config.members.iter().next() {
-        if match &n.identifier {
-            MemberIdentifier::Cracked { username } => member_details.username.eq(username),
-            MemberIdentifier::Premium { uuid } => member_details.uuid.eq(uuid),
-        } {
+        if member_details.username.eq(&n.username) {
             let discord0 = discord.clone();
 
             match n
